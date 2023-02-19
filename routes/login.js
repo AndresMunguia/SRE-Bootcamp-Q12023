@@ -1,13 +1,11 @@
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 
-export var token;
-
 import { loginFunction } from '../services/login';
 
 
 // DB connection.
-const connection = mysql.createConnection({
+export const connection = mysql.createConnection({
   host     : 'sre-bootcamp-selection-challenge.cabf3yhjqvmq.us-east-1.rds.amazonaws.com',
   user     : 'secret',
   password : 'jOdznoyH6swQB9sTGdLUeeSrtejWkcw',
@@ -29,7 +27,7 @@ export const login = (request, response, next) => {
 				let data = JSON.stringify(results);
 				let parsed  = JSON.parse(data);
 				let roleID = parsed[0].role;
-				token = jwt.sign({ roleID }, "my2w7wjd7yXF64FIADfJxNs1oupTGAuW");
+				let token = jwt.sign({ roleID }, "my2w7wjd7yXF64FIADfJxNs1oupTGAuW");
 				response.send({
 					"data": token
 				});
@@ -39,7 +37,7 @@ export const login = (request, response, next) => {
 			response.end();
 		});
 	} else {
-		response.send('Please enter Username and Password!');
+		response.send('Please enter Username and Password.');
 		response.end();
 	}
 }
