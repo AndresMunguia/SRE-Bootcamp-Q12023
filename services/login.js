@@ -15,17 +15,20 @@ export const connection = mysql.createConnection({
 
 // Adding the salt.
 export const addingSalt = (username, password) => {
-  
+  if(!username || !password) return null;
   let salt;
-  if (username === 'admin') {
-   salt = "F^S%QljSfV";
-  } else if (username === 'noadmin') {
-   salt = "KjvFUC#K*i";
-  } else if (username === 'bob') {
-   salt = "F^S%QljSfV";
-  } else {
-	 salt = 'none';
-	}
+
+switch(username){
+  case 'admin':
+  case 'bob':
+    salt = "F^S%QljSfV";
+    break;
+  case 'noadmin':
+    salt = "KjvFUC#K*i";
+    break;
+  default:
+    salt = null;
+  }
 
   const hashpass = crypto.createHash("sha512")
                         .update(password + salt)
@@ -35,25 +38,22 @@ return (hashpass)
 
 }
 
+
+
 // Endpoint function.
-export const loginFunction = (username, password) => {
-  if (username, password) {
+export const loginFunction = async (username, password) => {
+  if(!username || !password) return 'Enter a valid password/username.';
+  return new Promise((resolve, reject) => {
     let hash = addingSalt (username, password);
-    let token = connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, hash], function(error, results, fields) {
-			if (error) throw error;
-			if (results.length > 0) {
-				let data = JSON.stringify(results);
-				let parsed  = JSON.parse(data);
-				let roleID = parsed[0].role;
-				let signedtoken = jwt.sign({ roleID }, "my2w7wjd7yXF64FIADfJxNs1oupTGAuW");
-        //console.log(authToken)
-        return signedtoken;
-			} else {
-				return ('Please enter valid credential.');
-			}		
-		})
-    return token
-    //console.log(hash)
-    //console.log(token)
-	}
+    const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
+
+    connection.query(query, [username, hash], (error, results) => {
+      if(error) reject(new Error("Error"))
+      console.log({error, role:results[0]})
+      const {role} = results[0];
+      const token = jwt.sign({ role }, "my2w7wjd7yXF64FIADfJxNs1oupTGAuW");
+      console.log("--->", {results, token});
+      resolve(token);
+    });
+  });
 }
