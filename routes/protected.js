@@ -2,8 +2,8 @@ import { protectFunction } from '../services/protected';
 
 export const protect = (req, res, next) => {
   req.get('Accept').includes('application/json')
-
-  if (!req.headers.authorization) {
+  const empty = req.headers.authorization;
+  if (!empty) {
     return res.status(403).json({
     status: 403,
     error: 'Please enter a valid token',

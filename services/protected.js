@@ -7,6 +7,7 @@ export const protectFunction = (authorization) => {
   if (authorization) {
     let auth = jwt.verify(authorization, secretkey, (err, decoded) => {
       if (decoded) {
+        console.log({decoded})
         return ("You are under protected data");
       };
 			if (err) {

@@ -19,8 +19,10 @@ export const addingSalt = (username, password) => {
     let salt;
     switch(username){
       case 'admin':
-      case 'bob':
         salt = "F^S%QljSfV";
+        break;
+      case 'bob':
+        salt = "ykptwoT=M(";
         break;
       case 'noadmin':
         salt = "KjvFUC#K*i";
@@ -43,10 +45,17 @@ export const loginFunction = async (username, password) => {
     let hash = addingSalt (username, password);
     const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
     connection.query(query, [username, hash], (error, results) => {
-      if (error) reject(new Error("Error"))
+      if (results.length > 0) {
         const {role} = results[0];
         const token = jwt.sign({ role }, "my2w7wjd7yXF64FIADfJxNs1oupTGAuW");
         resolve(token);
+      }  else {
+        resolve({
+          status: 403,
+          error: 'Please enter a valid username and/or password',
+        });
+      }
     });
   });
 }
+

@@ -6,7 +6,7 @@ export const login = async (req, res, next) => {
   if (!username || !password) {
     return res.status(403).json({
     status: 403,
-    error: 'Please enter a valid password/username',
+    error: 'Please enter a valid username and/or password',
     })
   };
 
