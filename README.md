@@ -79,15 +79,19 @@ http://localhost:8000/login
 ```
 ```
 // GET endpoint, it decodes JSON Web Tokens and authenticate the user.
-    //Example $ curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" localhost:8000/protected
+    
+    //Example: 
+        //$ curl -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" localhost:8000/protected   
     //If you are on Windows use this instead: 
         //$ curl -H 'Accept:application/json' -H "Authorization: Bearer ${TOKEN}" localhost:8000/protected
+
 http://localhost:8000/protected
 
 *The variable ${TOKEN} must be replaced by a valid JSON Web Token returned by the "/login" endpoint.
 ```
 ```
 // GET endpoint, it checks API health.
+
 http://localhost:8000/_health
 ```
 
@@ -120,20 +124,24 @@ https://hub.docker.com/r/andresmunguia/wize-andres-munguia
 This API was created using:
 
 
-Code:
+Code languages used:
 - NodeJS
 - ExpressJS
 - MySQL
+
 
 Verison Control:
 - Git
 - Docker
 
+
 Automation:
 - Github Actions
 
+
 IDE:
 - VS Code
+
 
 
 ### Additonal notes:
