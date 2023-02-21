@@ -124,7 +124,7 @@ https://hub.docker.com/r/andresmunguia/wize-andres-munguia
 This API was created using:
 
 
-Code languages used:
+Coding:
 - NodeJS
 - ExpressJS
 - MySQL
