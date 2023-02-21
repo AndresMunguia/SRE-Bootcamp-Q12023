@@ -16,26 +16,22 @@ export const connection = mysql.createConnection({
 // Adding the salt.
 export const addingSalt = (username, password) => {
   if(!username || !password) return null;
-  let salt;
-
-switch(username){
-  case 'admin':
-  case 'bob':
-    salt = "F^S%QljSfV";
-    break;
-  case 'noadmin':
-    salt = "KjvFUC#K*i";
-    break;
-  default:
-    salt = null;
-  }
-
+    let salt;
+    switch(username){
+      case 'admin':
+      case 'bob':
+        salt = "F^S%QljSfV";
+        break;
+      case 'noadmin':
+        salt = "KjvFUC#K*i";
+        break;
+      default:
+        salt = null;
+    }
   const hashpass = crypto.createHash("sha512")
                         .update(password + salt)
                         .digest("hex");
-
-return (hashpass)
-
+  return (hashpass)
 }
 
 
@@ -46,14 +42,11 @@ export const loginFunction = async (username, password) => {
   return new Promise((resolve, reject) => {
     let hash = addingSalt (username, password);
     const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
-
     connection.query(query, [username, hash], (error, results) => {
-      if(error) reject(new Error("Error"))
-      console.log({error, role:results[0]})
-      const {role} = results[0];
-      const token = jwt.sign({ role }, "my2w7wjd7yXF64FIADfJxNs1oupTGAuW");
-      console.log("--->", {results, token});
-      resolve(token);
+      if (error) reject(new Error("Error"))
+        const {role} = results[0];
+        const token = jwt.sign({ role }, "my2w7wjd7yXF64FIADfJxNs1oupTGAuW");
+        resolve(token);
     });
   });
 }
