@@ -1,7 +1,7 @@
 FROM node:18.13.0
 WORKDIR /src
 COPY . .
-RUN npm install && npm start
+RUN npm install
 EXPOSE 8000
 
 # App must run on port 8000
