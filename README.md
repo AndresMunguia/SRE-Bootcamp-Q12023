@@ -72,7 +72,7 @@ $ docker run -d -p 8000:8000 andresmunguia/wize-andres-munguia:latest
 This API has 3 endpoints that can be used using this paths:
 
 ```
-// POST endpoint to access database, retrieve user's rol and create a JSON Web Token with it.
+// POST endpoint to access database, retrieves user's role and create a JSON Web Token with it.
     // Example: $ curl -d "username=admin&password=secret" http://localhost:8000/login
 
 http://localhost:8000/login
@@ -109,7 +109,7 @@ $ npm test
 
 ### CI Workflow
 
-Using Git Actions I scripted a CI pipeline, everytime there is a change on main branch this triggers and build a docker image, tags it and uploads it to my public Dcoker Hub repository.
+Using Git Actions I scripted a CI pipeline, every time there is a change on main branch this triggers and build a docker image, tags it and uploads it to my public Docker Hub repository.
 
 ```
 
@@ -118,7 +118,7 @@ https://hub.docker.com/r/andresmunguia/wize-andres-munguia
 ```
 
 
-### Tecnologies used:
+### Technologies used:
 
 
 This API was created using:
@@ -130,13 +130,13 @@ Code languages used:
 - MySQL
 
 
-Verison Control:
+Version Control:
 - Git
 - Docker
 
 
 Automation:
-- Github Actions
+- GitHub Actions
 
 
 IDE:
@@ -144,8 +144,8 @@ IDE:
 
 
 
-### Additonal notes:
+### Additional notes:
 
-Thanks so much for the oporunity, I learned a lot with this challenged and even had fun with it. I wanted to do more stuff like making secrets environment variables, also passing them to Github Secrets and adding the test cases to the CI pipeline but didn't have enough time since I was sick and wasted almost two weeks in bed. 
+Thanks so much for the opportunity, I learned a lot with this challenged and even had fun with it. I wanted to do more stuff like making secrets environment variables, also passing them to GitHub Secrets and adding the test cases to the CI pipeline but didn't have enough time since I was sick and wasted almost two weeks in bed. 
 
 I hope my work meets your expectations, I look forward to receiving feedback, thank you very much.
