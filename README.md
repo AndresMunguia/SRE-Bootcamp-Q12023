@@ -49,7 +49,7 @@ $ npm start
 
 
 
-If using the dockerized image, 
+If you are using Docker, you may pull the image from my repository using: 
 
 ```
 
@@ -57,7 +57,7 @@ $ docker pull andresmunguia/wize-andres-munguia:latest
 
 ```
 
-Then, once image is on our local machine, execute:
+Then, once the image is on your local machine, use this to run the container:
 
 ```
 
