@@ -7,16 +7,16 @@ export const login = async (req, res, next) => {
     return res.status(403).json({
     status: 403,
     error: 'Please enter a valid password/username',
-  })
-};
+    })
+  };
 
-try {
-  const data = await loginFunction(username, password);
-  res.status(200).json({
-    data
-  });
-} catch (error) {
-  console.log({error});
-}
+  try {
+    const data = await loginFunction(username, password);
+    res.status(200).json({
+      data
+    });
+  } catch (error) {
+    console.log({error});
+  }
   next();
 }
